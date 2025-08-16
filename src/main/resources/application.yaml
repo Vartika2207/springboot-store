@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: store
+
+stripe:
+  apiUrl: https://api.stripe.com
+  timeout: 3000
+  enabled: true
+
+payment-gateway: 'paypal-service'
