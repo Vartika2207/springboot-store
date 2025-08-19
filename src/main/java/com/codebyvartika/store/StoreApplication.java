@@ -4,6 +4,7 @@ import com.codebyvartika.store.entities.Address;
 import com.codebyvartika.store.entities.Profile;
 import com.codebyvartika.store.entities.Tag;
 import com.codebyvartika.store.entities.User;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,14 +15,24 @@ import java.util.Date;
 public class StoreApplication {
 
     public static void main(String[] args) {
-//        ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
+        ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 
         System.out.println("StoreApplication started");
         var user = User.builder()
                 .name("John")
                 .password("1234")
-                .email("email")
+                .email("emailaddress@gmail.com")
         .build();
+
+        System.out.println("User: " + user);
+
+
+        var profile = Profile.builder()
+                .bio("this is bio")
+                .build();
+        user.setProfile(profile);
+        profile.setUser(user);
+        System.out.println("profile: " + profile);
 
         var address = Address.builder()
                 .street("street")
@@ -30,24 +41,20 @@ public class StoreApplication {
                 .state("state")
                 .build();
 
-//        user.getAddresses().add(address);
-//        address.setUser(user);
         user.addAddress(address);
         System.out.println("user: " + user);
         System.out.println("address: " + address);
 
 
-        var profile = Profile.builder()
-                .bio("Hello its Me!")
-                .phoneNumber("12345")
-//                .dateOfBirth()
-                .loyaltyPoints(23)
-                .build();
+       var tag = new Tag("tag1");
 
-        var tag = Tag.builder()
-                .name("#Trend")
-                .build();
-
+       user.addTag("tag1");
+       System.out.println("user: with tag1 " + user);
+        System.out.println("tag: " + tag);
 
     }
+
+
+
+
 }

@@ -1,12 +1,13 @@
 spring:
   application:
+    port: 8082
     name: store
   datasource:
-    url: jdbc:mysql://localhost:3306/store?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/store_temp
     username: root
     password: Pass123456
   jpa:
     hibernate:
-      ddl-auto: update   # or validate if using Flyway
+      ddl-auto: create   # or validate if using Flyway
     show-sql: true
     database-platform: org.hibernate.dialect.MySQLDialect

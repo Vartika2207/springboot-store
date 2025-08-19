@@ -4,7 +4,8 @@ package com.codebyvartika.store.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -32,6 +33,7 @@ public class Address {
     @ManyToOne
     @JoinColumn(name="user_id")
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private User user;
 
 }
