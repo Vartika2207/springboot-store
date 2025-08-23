@@ -34,5 +34,6 @@ public class Profile {
     @JoinColumn(name="id")
     @MapsId
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private User user;
 }

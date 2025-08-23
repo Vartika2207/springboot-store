@@ -18,3 +18,13 @@ create table tags (
                       id bigint auto_increment not null primary key,
                       name varchar(255) not null
 );
+
+
+-- user_tags
+create table user_tags (
+                           user_id bigint not null,
+                           tag_id bigint not null,
+                           primary key (user_id, tag_id),
+                           foreign key (user_id) references users(id),
+                           foreign key (tag_id) references tags(id)
+);
