@@ -1,15 +1,10 @@
 package com.codebyvartika.store;
 
-import com.codebyvartika.store.entities.Address;
-import com.codebyvartika.store.entities.Profile;
-import com.codebyvartika.store.entities.Tag;
 import com.codebyvartika.store.entities.User;
-
+import com.codebyvartika.store.repositories.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-
-import java.util.Date;
 
 @SpringBootApplication
 public class StoreApplication {
@@ -17,44 +12,15 @@ public class StoreApplication {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 
-        System.out.println("StoreApplication started");
+        var repository = context.getBean(UserRepository.class);
+
         var user = User.builder()
                 .name("John")
-                .password("1234")
-                .email("emailaddress@gmail.com")
-        .build();
-
-        System.out.println("User: " + user);
-
-
-        var profile = Profile.builder()
-                .bio("this is bio")
+                .email("john@gmail.com")
+                .password("Pass123455")
                 .build();
-        user.setProfile(profile);
-        profile.setUser(user);
-        System.out.println("profile: " + profile);
-
-        var address = Address.builder()
-                .street("street")
-                .zip("zip")
-                .city("city")
-                .state("state")
-                .build();
-
-        user.addAddress(address);
-        System.out.println("user: " + user);
-        System.out.println("address: " + address);
-
-
-       var tag = new Tag("tag1");
-
-       user.addTag("tag1");
-       System.out.println("user: with tag1 " + user);
-        System.out.println("tag: " + tag);
+        repository.save(user);
 
     }
-
-
-
 
 }
