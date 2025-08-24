@@ -1,6 +1,7 @@
 package com.codebyvartika.store.services;
 
 import com.codebyvartika.store.entities.User;
+import com.codebyvartika.store.repositories.AddressRepository;
 import com.codebyvartika.store.repositories.ProfileRepository;
 import com.codebyvartika.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
@@ -14,6 +15,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
     private final EntityManager entityManager;
+    private final AddressRepository addressRepository;
 
     @Transactional
     public void showEntityStates() {
@@ -46,5 +48,12 @@ public class UserService {
 
         var profile_email = profileRepository.findById(2L).orElseThrow();
         System.out.println("profile_email has " + profile_email.getUser().getEmail());
+    }
+
+    @Transactional
+    public void fetchAddress() {
+        var address = addressRepository.findById(1L).orElseThrow();
+//        System.out.println("Address to email " + address.getUser().getEmail());
+
     }
 }
