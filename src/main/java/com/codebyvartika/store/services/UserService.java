@@ -75,4 +75,14 @@ public class UserService {
     }
 
 
+    @Transactional
+    public void deleteRelated() {
+//        userRepository.deleteById(1L);
+
+        var user = userRepository.findById(16L).orElseThrow();
+        var address = user.getAddresses().getFirst();
+        System.out.println("address to be removed for user " +  user.getEmail());
+        user.removeAddress(address);
+        userRepository.save(user);
+    }
 }
