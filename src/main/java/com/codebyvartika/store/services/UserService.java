@@ -1,6 +1,7 @@
 package com.codebyvartika.store.services;
 
 import com.codebyvartika.store.entities.User;
+import com.codebyvartika.store.repositories.ProfileRepository;
 import com.codebyvartika.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final ProfileRepository profileRepository;
     private final EntityManager entityManager;
 
     @Transactional
@@ -32,5 +34,17 @@ public class UserService {
             System.out.println("Exists -> Persistent");
         else
             System.out.println("Does not exist -> Transient/detached");
+    }
+
+    @Transactional
+    public void showRelatedEntities() {
+        var user = userRepository.findById(5L).orElseThrow();
+        System.out.println("email id of user  " + user.getEmail());
+
+        var profile = profileRepository.findById(2L).orElseThrow();
+        System.out.println("profile has " + profile.getBio());
+
+        var profile_email = profileRepository.findById(2L).orElseThrow();
+        System.out.println("profile_email has " + profile_email.getUser().getEmail());
     }
 }

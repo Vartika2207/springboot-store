@@ -15,7 +15,8 @@ public class StoreApplication {
         System.out.println("Store application started.....");
 
         var service = context.getBean(UserService.class);
-        service.showEntityStates();
+        service.showRelatedEntities();
+
 
     }
 

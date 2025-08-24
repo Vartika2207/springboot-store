@@ -52,6 +52,7 @@ public class User {
     @OneToOne(mappedBy = "user")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+
     private Profile profile;
 
     public void addAddress(Address address) {
@@ -74,4 +75,13 @@ public class User {
         tags.remove(tag);
         tag.getUsers().remove(this);
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "wishlist",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+
+    )
+    private Set<Product> wishlist = new HashSet<>();
 }
