@@ -1,5 +1,6 @@
 package com.codebyvartika.store.services;
 
+import com.codebyvartika.store.entities.Address;
 import com.codebyvartika.store.entities.User;
 import com.codebyvartika.store.repositories.AddressRepository;
 import com.codebyvartika.store.repositories.ProfileRepository;
@@ -53,7 +54,25 @@ public class UserService {
     @Transactional
     public void fetchAddress() {
         var address = addressRepository.findById(1L).orElseThrow();
-//        System.out.println("Address to email " + address.getUser().getEmail());
-
+        System.out.println("Address to email " + address.getUser().getEmail());
     }
+
+    public void persistRelated() {
+        var user = User.builder()
+                .name("vikalp")
+                .email("vikalp@gmail.com")
+                .password("Pass123456")
+                .build();
+        var address = Address.builder()
+                .zip("12345")
+                .state("state")
+                .city("city")
+                .street("street")
+                .build();
+
+        user.addAddress(address);
+        userRepository.save(user);
+    }
+
+
 }
