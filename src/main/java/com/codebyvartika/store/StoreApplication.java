@@ -2,6 +2,7 @@ package com.codebyvartika.store;
 
 import com.codebyvartika.store.entities.User;
 import com.codebyvartika.store.repositories.UserRepository;
+import com.codebyvartika.store.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,18 +14,8 @@ public class StoreApplication {
         ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
         System.out.println("Store application started.....");
 
-        var repository = context.getBean(UserRepository.class);
-        var user = repository.findById(1L).orElseThrow();
-        System.out.println(user.getEmail());
-
-        repository.findAll().forEach(u -> System.out.println(u.getName()));
-
-//        var user = User.builder()
-//                .name("John1")
-//                .email("john1@gmail.com")
-//                .password("Pass123455")
-//                .build();
-//        repository.save(user);
+        var service = context.getBean(UserService.class);
+        service.showEntityStates();
 
     }
 
