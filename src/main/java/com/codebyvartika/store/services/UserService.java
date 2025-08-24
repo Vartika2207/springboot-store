@@ -1,14 +1,16 @@
 package com.codebyvartika.store.services;
 
-import com.codebyvartika.store.entities.Address;
-import com.codebyvartika.store.entities.User;
+import com.codebyvartika.store.entities.*;
 import com.codebyvartika.store.repositories.AddressRepository;
+import com.codebyvartika.store.repositories.ProductRepository;
 import com.codebyvartika.store.repositories.ProfileRepository;
 import com.codebyvartika.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 @AllArgsConstructor
 @Service
@@ -17,6 +19,7 @@ public class UserService {
     private final ProfileRepository profileRepository;
     private final EntityManager entityManager;
     private final AddressRepository addressRepository;
+    private final ProductRepository productRepository;
 
     @Transactional
     public void showEntityStates() {
@@ -84,5 +87,15 @@ public class UserService {
         System.out.println("address to be removed for user " +  user.getEmail());
         user.removeAddress(address);
         userRepository.save(user);
+    }
+
+
+    @Transactional
+    public void manageProducts() {
+        var user = userRepository.findById(1L).orElseThrow();
+        var products = productRepository.findAll();
+        products.forEach(user::addFavoriteProduct);
+        userRepository.save(user);
+
     }
 }
