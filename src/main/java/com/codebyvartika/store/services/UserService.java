@@ -98,4 +98,9 @@ public class UserService {
         userRepository.save(user);
 
     }
+
+    public void manageProductDelete() {
+        System.out.println("deleting a product here .. ");
+//        productRepository.deleteById(2L);
+    }
 }

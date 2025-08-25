@@ -25,7 +25,7 @@ public class Category {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "category_id")
     private Set<Product> products = new HashSet<>();
 
