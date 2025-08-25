@@ -16,7 +16,7 @@ public class StoreApplication {
 
         var service = context.getBean(UserService.class);
         service.manageProducts();
-        service.manageProductDelete();
+        service.updateProductPrices();
 
 
     }

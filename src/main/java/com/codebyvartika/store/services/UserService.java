@@ -102,5 +102,10 @@ public class UserService {
     public void manageProductDelete() {
         System.out.println("deleting a product here .. ");
 //        productRepository.deleteById(2L);
+
+    }
+
+    public void updateProductPrices() {
+        productRepository.updatePriceByCategory(BigDecimal.valueOf(5), (byte)3);
     }
 }
