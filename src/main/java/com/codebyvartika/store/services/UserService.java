@@ -108,4 +108,12 @@ public class UserService {
     public void updateProductPrices() {
         productRepository.updatePriceByCategory(BigDecimal.valueOf(5), (byte)3);
     }
+
+//    projections
+    public void fetchProducts() {
+        var products = productRepository.findByCategory(new Category((byte)1));
+        products.forEach(product -> {
+            System.out.println("product is " + product);
+        });
+    }
 }

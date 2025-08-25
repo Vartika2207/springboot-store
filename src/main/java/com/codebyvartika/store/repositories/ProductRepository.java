@@ -1,5 +1,8 @@
 package com.codebyvartika.store.repositories;
 
+import com.codebyvartika.store.dtos.ProductSummary;
+import com.codebyvartika.store.dtos.ProductSummaryDTO;
+import com.codebyvartika.store.entities.Category;
 import com.codebyvartika.store.entities.Product;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
@@ -63,4 +66,9 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query("UPDATE Product p SET p.price = :newPrice WHERE p.category.id = :categoryId")
     void updatePriceByCategory(@Param("newPrice") BigDecimal newPrice,
                                @Param("categoryId") Byte categoryId);
+
+
+    //        projections
+    @Query("select new com.codebyvartika.store.dtos.ProductSummaryDTO(p.id, p.name) from Product p where p.category = :category")
+    List<ProductSummaryDTO> findByCategory(@Param("category") Category category);
 }
