@@ -49,10 +49,10 @@ public class User {
     @EqualsAndHashCode.Exclude
     private Set<Tag> tags = new HashSet<>();
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private Profile profile;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+//    @ToString.Exclude
+//    @EqualsAndHashCode.Exclude
+//    private Profile profile;
 
     public void addAddress(Address address) {
         this.addresses.add(address);
@@ -86,5 +86,13 @@ public class User {
 
     public void addFavoriteProduct(Product product) {
         wishlist.add(product);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "name = " + name + ", " +
+                "email = " + email + ")";
     }
 }

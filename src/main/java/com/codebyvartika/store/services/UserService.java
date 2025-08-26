@@ -116,4 +116,20 @@ public class UserService {
             System.out.println("product is " + product);
         });
     }
+
+    @Transactional
+    public void fetchUser() {
+        var user = userRepository.findByEmail("v@gmail.com").orElseThrow();
+        System.out.println("Name of user with v@gmail.com " + user.getName());
+        System.out.println("User with v@gmail.com " + user);
+    }
+
+    @Transactional
+    public void fetchUsers() {
+        var user = userRepository.findAllWithAddress();
+        user.forEach(u -> {
+            System.out.println("user is " + u);
+            u.getAddresses().forEach(System.out::println);
+        });
+    }
 }
