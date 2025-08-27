@@ -24,7 +24,9 @@ public class StoreApplication {
 //        service.fetchUsers();
 //        service.fetchProducts();
 //        service.fetchProductsByCriteria();
-        service.fetchProductBySpecification("Bear", BigDecimal.valueOf(2), null);
+//        service.fetchProductBySpecification("Bear", BigDecimal.valueOf(2), null);
+//        service.fetchSortedProducts();
+        service.fetchPaginatedProducts(0,3);
     }
 
 }
