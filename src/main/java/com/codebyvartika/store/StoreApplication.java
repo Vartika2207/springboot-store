@@ -19,7 +19,8 @@ public class StoreApplication {
 //        service.updateProductPrices();
 //        service.fetchProducts();
 //        service.fetchUser();
-        service.fetchUsers();
+//        service.fetchUsers();
+        service.fetchProducts();
 
     }
 

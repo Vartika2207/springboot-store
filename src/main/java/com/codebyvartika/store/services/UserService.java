@@ -8,6 +8,8 @@ import com.codebyvartika.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -109,12 +111,17 @@ public class UserService {
         productRepository.updatePriceByCategory(BigDecimal.valueOf(5), (byte)3);
     }
 
-//    projections
+    @Transactional
     public void fetchProducts() {
-        var products = productRepository.findByCategory(new Category((byte)1));
-        products.forEach(product -> {
-            System.out.println("product is " + product);
-        });
+        var product = new Product();
+        product.setName("Product");
+        var matcher = ExampleMatcher.matching()
+                .withIncludeNullValues()
+                .withIgnorePaths("id", "description")
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        var example = Example.of(product,matcher);
+        var products = productRepository.findAll(example);
+        products.forEach(System.out::println);
     }
 
     @Transactional

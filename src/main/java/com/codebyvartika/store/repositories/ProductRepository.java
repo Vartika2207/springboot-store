@@ -5,6 +5,8 @@ import com.codebyvartika.store.dtos.ProductSummaryDTO;
 import com.codebyvartika.store.entities.Category;
 import com.codebyvartika.store.entities.Product;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Example;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,7 +15,7 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface ProductRepository extends CrudRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
     //    String
     //    select * from product where name = ?
     List<Product> findByName(String name);
@@ -71,4 +73,5 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     //        projections
     @Query("select new com.codebyvartika.store.dtos.ProductSummaryDTO(p.id, p.name) from Product p where p.category = :category")
     List<ProductSummaryDTO> findByCategory(@Param("category") Category category);
+
 }
