@@ -20,8 +20,8 @@ public class StoreApplication {
 //        service.fetchProducts();
 //        service.fetchUser();
 //        service.fetchUsers();
-        service.fetchProducts();
-
+//        service.fetchProducts();
+        service.fetchProductsByCriteria();
     }
 
 }
