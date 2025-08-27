@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.math.BigDecimal;
+
 @SpringBootApplication
 public class StoreApplication {
 
@@ -21,7 +23,8 @@ public class StoreApplication {
 //        service.fetchUser();
 //        service.fetchUsers();
 //        service.fetchProducts();
-        service.fetchProductsByCriteria();
+//        service.fetchProductsByCriteria();
+        service.fetchProductBySpecification("Bear", BigDecimal.valueOf(2), null);
     }
 
 }
